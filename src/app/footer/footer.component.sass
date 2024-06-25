@@ -1,0 +1,97 @@
+@import '../../styles.sass'
+
+.icons img
+    transition: transform 0.3s ease
+    &:hover
+        transform: translateY(-10px)
+.main
+    @include flex-center-col
+    background-color: black  
+
+.top-section
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+
+.left-side, .right-side
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.icons
+    display: flex
+    justify-content: center
+    align-items: center
+
+img
+    height: 40px
+    width: 40px
+
+.icons
+    padding-top: $xl
+    gap: 47px
+
+a
+    color: white
+.mail
+    font-size: 23px
+    padding-top: 48px
+
+.legal-notice
+    padding-bottom: $l
+    padding-top: $s
+    font-size: 16px
+
+.logo
+    padding-top: 28px
+    padding-bottom: 28px
+
+@media (min-width: $tablet)
+
+    .main
+        align-items: flex-end
+
+    .mail
+        padding-top: 10px
+
+    .top-section
+        flex-direction: row
+        justify-content: space-between
+
+    .left-side
+        align-items: flex-start
+
+    .right-side
+        align-items: flex-end
+    img
+        height: 40px
+        width: 40px
+
+    .icons
+        gap: 47px
+        padding-top: 0px
+
+    a
+        color: white
+    .mail
+        font-size: 23px
+
+    .legal-notice
+        padding-bottom: $l
+        padding-top: 0px
+        font-size: 16px
+
+    .logo
+        padding-bottom: 28px
+
+@media (min-width: $tablet)
+    .logo
+        padding-top: 17px
+        padding-bottom: 17px
+        
+    .legal-notices
+        padding-top: 0px
+        padding-bottom: 0px
+        display: flex
+        justify-content: flex-end

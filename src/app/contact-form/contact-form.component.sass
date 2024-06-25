@@ -1,0 +1,263 @@
+@import '../../styles.sass'
+
+.loading-screen
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.5)
+    z-index: 9999
+
+#pagesHead img
+    transition: transform 5s
+
+div
+    color: #FFFCF3
+
+.triangle
+    display: block
+
+.greeting
+    background-color: black
+    opacity: 1.0
+    color: white
+
+.send-btn
+    transition: font-weight 0.3s ease, transform 0.3s ease
+    &:hover
+        font-weight: bold
+        transform: scaleX(1.1)
+
+.success-btn
+    border: 4px solid #7fff00 !important
+    opacity: 1 !important
+    div
+        color: #7fff00 !important
+
+.send-btn:disabled
+    border: 4px solid #BBB
+    opacity: 0.3
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.15)
+    pointer-events: none
+    &:hover
+        border: 4px solid #BBB
+        opacity: 0.3
+        box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.15)
+        font-weight: normal
+        transform: scaleX(1.0)
+
+.contact-data
+    padding-left: $s
+    padding-right: $s
+    position: relative
+    margin-top: 52px
+    input, textarea
+        background-color: black
+        border: none
+        width: calc( 100% - 42px )
+        color: #FFFCF3
+        font-size: 16px
+        margin-bottom: $ml
+        outline: $border-transparent
+        border-bottom: 2px solid #FFFCF3
+
+    input:active, input:focus, textarea:active, textarea:focus
+        background-color: black !important
+        color: white !important
+
+    input:-webkit-autofill, textarea:-webkit-autofill
+        background-color: black !important
+        -webkit-box-shadow: 0 0 0 1000px black inset
+        color: white !important
+        -webkit-text-fill-color: white !important
+    textarea
+        height: 200px
+        font-family: overpass
+        resize: none
+        padding-top: 10.5px
+        padding-bottom: 10.5px
+        padding-left: 25px
+    input
+        padding-top: 10.5px
+        padding-left: 25px
+        padding-bottom: 10.5px
+
+    input:focus, textarea:focus
+        outline: $border-white
+        border-bottom: 2px solid transparent
+
+h3
+    font-family: 'Overpass'
+    font-style: normal
+    font-weight: 700
+    font-size: 32px
+    line-height: 38px
+    text-align: center
+    color: $secondary
+    padding-top: $ml
+    padding-bottom: $s
+
+.greeting
+    text-align: center
+
+.main
+    background-color: black !important
+    position: relative
+
+.triangle
+    width: 100%
+    background-color: $background
+    img
+        width: 100%
+
+.arrow-up
+    position: absolute
+    right: 0
+    width: 53px
+    height: 76px
+
+.btn-container
+    width: 100%
+    display: flex
+    justify-content: center
+    position: relative
+
+.send-btn
+    border: 2px solid #FFFCF3
+    background-color: black
+    padding: 20px 40px
+
+.valid, .invalid
+    position: absolute
+    width: 20px
+    height: 20px
+    right: 5%
+    top: 10px
+
+.contact
+    @include flex-center-col
+    .contact-data
+        width: max(260px, 40%)
+
+.hide
+    display: none
+
+.error-message
+    color: red
+    font-size: 14px
+    margin-top: 5px
+
+.privacy-policy
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    gap: 8px
+    margin: 12px 0px 12px 0px
+    div
+        font-size: 14px
+    a
+        font-size: 14px
+        color: $secondary
+        text-decoration: none
+        transition: 0.3s
+        &:hover
+            font-size: 16px
+
+.privacy-btn
+    width: 25px
+    height: 25px
+    background-color: transparent
+    border: 2px solid white
+    position: relative
+
+.checkmark
+    position: absolute
+    font-size: 25px !important
+    top: -7px
+    left: 2px
+
+.hover-div
+    border-radius: 50%
+    width: 25px
+    height: 25px
+    padding: 5px
+    &:hover
+        background-color: $secondary
+
+.email-delivered
+    position: absolute
+    width: 90vw
+    height: 90vh
+    background-color: rgba(0, 0, 0, 0.9)
+    font-size: 45px
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+
+.spinner
+    width: 44.8px
+    height: 44.8px
+    animation: spinner-y0fdc1 2s infinite ease
+    transform-style: preserve-3d
+
+    & > div
+        background-color: rgba(255,255,255,0.2)
+        height: 100%
+        position: absolute
+        width: 100%
+        border: 2.2px solid #ffffff
+
+    & div:nth-of-type(1)
+        transform: translateZ(-22.4px) rotateY(180deg)
+
+    & div:nth-of-type(2)
+        transform: rotateY(-270deg) translateX(50%)
+        transform-origin: top right
+
+    & div:nth-of-type(3)
+        transform: rotateY(270deg) translateX(-50%)
+        transform-origin: center left
+
+    & div:nth-of-type(4)
+        transform: rotateX(90deg) translateY(-50%)
+        transform-origin: top center
+
+    & div:nth-of-type(5)
+        transform: rotateX(-90deg) translateY(50%)
+        transform-origin: bottom center
+
+    & div:nth-of-type(6)
+        transform: translateZ(22.4px)
+
+@keyframes spinner-y0fdc1
+    0%
+        transform: rotate(45deg) rotateX(-25deg) rotateY(25deg)
+
+    50%
+        transform: rotate(45deg) rotateX(-385deg) rotateY(25deg)
+
+    100%
+        transform: rotate(45deg) rotateX(-385deg) rotateY(385deg)
+
+@media (min-width: $tablet)
+
+    .btn-container
+        justify-content: space-between
+
+    .send-btn, .success-btn
+        font-size: 32px
+        padding: 20px 10px
+
+    .contact-data
+        input, textarea
+            width: calc( 100% - 21px )
+
+    h2
+        text-align: left !important
+        justify-content: flex

@@ -1,0 +1,38 @@
+<div appHidden class="main header-padding" [ngClass]="{'hide-content height-100': displayService.showH2Only$ | async}" id="pagesHead">
+    <div data-aos="slide-right" class="discription">
+        <h1>Frontend<br> Developer</h1>
+        <div class="border-name">
+            <div class="border"></div>
+            <div class="name">Stefan Herrmann</div>
+        </div>
+  
+    </div>
+    <div class="mailto">
+        <a class="mail" href="mailto:contact@stefan-herrmann.org">contact&#64;stefan-herrmann.org</a>
+        <div class="arrow-down-container ">     
+            <div>Scroll<br>Down</div>
+        </div>
+    </div>
+</div>
+<div class="main-part" [ngClass]="{'hide-content': !displayService.isMenuOpen}">
+    <div class="main-menu">
+        <a href="#journey" (click)="toggleContent()" class="title-line">
+            <h2 class="main-h2">About me</h2>
+            <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
+        </a>
+        <a href="#skills" (click)="toggleContent()" class="title-line">
+            <h2 class="main-h2">My Skills</h2>
+            <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
+        </a>
+        <a href="#portfolio" (click)="toggleContent()" class="title-line">
+            <h2 class="main-h2">Portfolio</h2>
+            <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
+        </a>
+    </div>
+</div>
+<app-journey></app-journey>
+<app-skills></app-skills>
+<app-projects></app-projects>

@@ -1,0 +1,23 @@
+<div class="main" id="skills" [ngClass]="{'hide-content': displayService.showH2Only$ | async}">
+    <div class="arrow-container left-arrow">
+      <img data-aos="fade-down-left" class="arrow" src="assets/img/icons/arrowLeft.png">
+    </div>
+    <div class="skill-title-container">
+      <div class="skill-title">
+        <h2>My Skills</h2>
+      </div>
+    </div>
+    <div class="skills">
+      <div class="skill-animation" *ngFor="let skill of skills; let i = index">
+        <div class="skill">
+          <div class="name-img">
+            <img class="skill-img" [ngClass]="{'is-hovered': isHovered[i]}" [src]="skill.icon" (mouseenter)="startHover(i)">
+            <div class="skill-name" [ngClass]="{'is-hovered': isHovered[i]}" (mouseenter)="startHover(i)">
+              {{ skill.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

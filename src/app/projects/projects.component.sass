@@ -1,0 +1,210 @@
+@import '../../styles.sass'
+
+.right
+    display: flex
+    align-items: flex-end
+    flex-direction: column
+    .project
+        display: flex
+        align-items: flex-end
+        flex-direction: column
+    .overlay-container
+        position: relative
+        display: flex
+        justify-content: flex-start
+        width: 100%
+        .overlay
+            border: 4px solid #000000
+            position: absolute
+            top: 5%
+            left: 2.5%
+            width: 80%
+            height: 100%
+            animation: spread-out 0.25s ease-in-out
+            img
+                position: absolute
+                top: 50%
+                left: -18.75px
+                transform: translateY(-50%)
+                width: 37.5px
+                height: 37.5px
+                transform: rotate(90deg)
+                animation-delay: 0.5s
+                animation: move-arrow 0.5s ease-in-out forwards
+    .project-description
+        text-align: right
+
+.left
+    display: flex
+    align-items: flex-start
+    flex-direction: column
+
+    .project
+        display: flex
+        align-items: flex-start
+        flex-direction: column
+    .overlay-container
+        position: relative
+        display: flex
+        justify-content: flex-end
+        width: 100%
+        .overlay
+            border: 4px solid #000000
+            position: absolute
+            top: 5%
+            right: 2.5%
+            bottom: 10px
+            width: 80%
+            height: 100%
+            animation: spread-out 0.25s ease-in-out
+            img
+                position: absolute
+                top: 50%
+                right: -18.75px
+                transform: translateY(-50%)
+                width: 37.5px
+                height: 37.5px
+                transform: rotate(90deg)
+                animation-delay: 0.5s
+                animation: move-arrow 0.5s ease-in-out forwards
+
+    .project-description
+        text-align: left
+
+@keyframes spread-out
+    0%
+        height: 0%
+        width: 0%
+
+    100%
+        height: 100%
+        width: 80%
+
+@keyframes move-arrow
+    0%
+        opacity: 0
+        transform: rotate(90deg)
+    100%
+        opacity: 1
+        transform: rotate(0deg)
+
+.work-description
+    padding-top: $l
+    padding-bottom: $xl
+
+.projects
+    img
+        width: 80%
+        aspect-ratio: 100 / 65
+        position: relative
+        display: flex
+
+.project-number
+    font-family: 'Syne'
+    font-style: normal
+    font-weight: 700
+    font-size: 23px
+    line-height: 120%
+    padding-bottom: $s
+
+.showTitle
+    opacity: 1
+
+h3
+    font-size: 32px
+    font-family: 'Syne'
+    font-style: normal
+    font-weight: 800
+    font-size: 32px
+    line-height: 120%
+    padding-top: $m
+
+.technologies
+    font-size: 23px
+    line-height: 28px
+    display: flex
+    align-items: center
+    color: #5988FF
+    padding-top: 15px
+    padding-bottom: 15px
+
+.link-boxes
+    margin-top: 55px
+    margin-bottom: 55px
+    border: $border
+    padding: 20px 60px
+    transition: background-color 0.6s ease
+    &:hover
+        font-weight: bold
+        transform: scaleX(1.1)
+
+.hide
+    opacity: 0
+
+.d-none
+    display: none !important
+
+.gray
+    filter: grayscale(100%)
+
+.project-img img
+    transition: filter 1s ease
+
+.portfolio
+    display: flex
+    justify-content: center
+
+@media (min-width: $desktop)
+
+    .left
+        .overlay-container
+            .overlay
+                img
+                    height: 75.5px
+                    width: 75.5px
+                    right: -37.75px
+    .right
+        .overlay-container
+            .overlay
+                img
+                    height: 75.5px
+                    width: 75.5px
+                    left: -37.75px
+
+    .arrow-right
+        margin-right: 460px
+
+    .project
+        width: 40%
+
+    .right
+        padding-bottom: min(104px, 40%)
+        .project-container
+            display: flex
+            flex-direction: row
+        .project-img
+            align-items: flex-end
+        .overlay-container
+            height: 40%
+
+    .left
+        padding-bottom: min(104px, 40%)
+        .project-container
+            display: flex
+            flex-direction: row-reverse
+        .project-img
+            align-items: flex-start
+        .overlay-container
+            height: 40%
+
+    .project-number
+        font-size: 48px
+
+    @keyframes spread-out
+        0%
+            height: 0%
+            width: 0%
+
+        100%
+            height: 100%
+            width: min(900px, 40%)

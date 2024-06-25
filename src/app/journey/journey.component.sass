@@ -1,0 +1,61 @@
+@import '../../styles.sass'
+
+.main
+    padding-top: 58px
+
+.image-con
+    @include flex-center
+    .profile-pic
+        width: 336px
+        height: 336px
+        padding-top: $xxl
+
+.about-me
+
+    padding-top: 44px
+
+.btn-container
+    padding-top: 35px
+    width: 100%
+    @include flex-center
+    .contact-btn
+        border: 4px solid #000000
+        filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.15))
+        padding: 20px 60px
+        @include flex-center-row
+        &:hover
+            font-weight: bold !important
+            transform: scaleX(1.1) !important
+        .arrow-container
+            padding-left: 45%
+
+@media (min-width: $x-small)
+    .image-con
+        .profile-pic
+            width: 270px
+            height: 270px
+
+@media (min-width: $desktop)
+
+    .content
+        display: flex
+        justify-content: space-between
+        gap: 20px
+
+    .about-me
+        flex: 1
+        padding-top: 52px
+
+    .image-con       
+        .profile-pic
+            height: 533px
+            width: 533px
+            padding-top: 52px
+
+@media (max-width: 340px)
+
+    .image-con
+        .profile-pic
+            padding-top: 10px
+            width: 100%
+            height: auto

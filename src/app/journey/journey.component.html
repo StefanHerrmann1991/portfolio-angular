@@ -1,0 +1,16 @@
+<div appHidden class="main" id="journey" [ngClass]="{'hide-content': displayService.showH2Only$ | async}">
+    <h2 appHidden data-aos="slide-left" data-aos-delay="200">About me</h2>
+    <div class="content">
+        <div class="about-me">
+            <div *ngFor="let journey of journeys; let i = index">
+                <div data-aos="fade-up-left" [attr.data-aos-delay]="200 * i"> {{journey.text}} </div>
+            </div>
+            <div class="btn-container">
+                <button class="contact-btn desktop"><a class="btn-link" href="#contactForm">Let's talk</a></button>
+            </div>
+        </div>
+        <div class="image-con">
+            <img data-aos="slide-right" data-aos-delay="200" class="profile-pic" src="assets/img/profile/profile.png">
+        </div>
+    </div>
+</div>

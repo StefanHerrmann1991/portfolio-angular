@@ -1,0 +1,92 @@
+@import '../styles.sass'
+
+.menu-pdg
+    padding-top: 150px
+
+.costom
+    background-color: $background
+    color: black
+    font-size: 40px
+    height: 40px
+    width: 40px
+
+.static
+    position: static
+.fixed
+    position: fixed
+
+.page
+    display: flex
+    justify-content: space-between
+
+.header
+    top: 0
+    z-index: 1000
+    background-color: $background
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-top: $m
+    padding-bottom: $m
+    img
+        height: 40px
+        width: 40px
+    a
+        margin-left: 15px
+
+        &:hover
+            color: $primary
+
+.logo
+    cursor: pointer
+
+.menu
+    @media (max-width: $tablet)
+        display: none
+        &.is-open
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            position: absolute
+            top: 64px
+            left: 0px
+            background-color: black
+            width: 100%
+            z-index: 100
+            padding: 0px
+            a
+                color: white
+                border-bottom: 0.2px solid rgba(255, 255, 255, 0.5)
+                margin: 0px
+                padding: $s
+                width: calc(100% - 24px)
+                display: flex
+                justify-content: center
+
+.burger
+    border: none
+    background-color: black
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+
+@media (min-width: $tablet)
+    .menu-pdg
+        padding-top: 200px
+
+@media (min-width: $large)
+
+    .menu-pdg
+        padding-top: 250px
+
+    .header
+        img
+            height: 80px
+            width: 80px
+
+    .costom
+        font-size: 80px
+        height: 80px
+        width: 80px

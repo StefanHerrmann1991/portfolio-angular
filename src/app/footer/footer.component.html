@@ -1,0 +1,19 @@
+<div class="main">
+    <div class="top-section">
+        <div class="left-side">
+            <img class="logo" src="assets/img/profile/logo.png"
+                [ngClass]="{'hide-content': displayService.showH2Only$ | async}">
+            <a class="mail" href="mailto:mailto:contact@stefan-herrmann.org">contact&#64;stefan-herrmann.org</a>
+        </div>
+        <div class="right-side">
+            <div class="icons">
+                <div *ngFor="let socialLogo of socialLogos">
+                    <a href="{{socialLogo.url}}" target="_blank">
+                        <img src="{{socialLogo.logo}}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="legal-notice" routerLink="/legal-notice" routerLinkActive="active">Imprint | Legal Notice</a>
+</div>

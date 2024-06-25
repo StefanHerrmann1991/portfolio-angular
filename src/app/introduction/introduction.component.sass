@@ -1,0 +1,143 @@
+@import '../../styles.sass'
+
+.pdg-144
+    padding-top: 144px
+
+.pdg-0
+    padding-top: 0px
+
+.main-part
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+
+.main-h2:hover ~ .vertical-line
+    height: 0px
+
+.main-h2
+    width: 40%
+    text-align: left
+
+.title-line
+    display: flex
+    position: relative
+    align-items: center
+    justify-content: flex-start
+    margin-bottom: 35px
+
+.main-h2
+    flex-grow: 1
+    width: auto
+    text-align: left
+    opacity: 1.0
+    &:hover
+        color: black
+
+.vertical-line
+    position: absolute
+    width: 4px
+    height: 80%
+    background-color: black
+    margin-left: -10%
+    bottom: -20px
+    transition: height 0.25s ease
+
+.horizontal-line
+    position: absolute
+    height: 4px
+    width: 10%
+    bottom: -20px
+    background-color: black
+    margin-left: -10%
+    left: 0
+    transition: width 0.15s ease, left 0.15s ease
+
+.main-h2:hover ~ .horizontal-line
+    width: 50%
+    left: 50%
+    transition: width 0.25s ease 0.15s, left 0.25s ease 0.25s
+
+.burger-title
+    color: black !important
+    opacity: 1.0
+    position: relative
+
+.height-100
+    height: 100%
+
+span
+    color: $primary
+
+.main
+    background-color: $background
+    align-items: center
+    flex-direction: column
+    justify-content: space-between
+ 
+
+.border-name
+    @include flex-center
+    padding-bottom: $xl
+    width: 100%
+    .name
+        color: $secondary
+        font-weight: 700
+    .border
+        border-top: 3px solid #000000
+        width: 40%
+        margin: 5px
+
+.mailto
+    display: flex
+    justify-content: space-between
+    height: max(300px, 35vh)
+    flex-direction: row
+    align-items: flex-end
+    .mail
+        writing-mode: vertical-rl
+        transform: rotate(180deg)
+
+.arrow-down-container
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    flex-direction: column
+    height: 100%
+    position: relative
+
+.arrow-down
+    width: 50px
+    height: 92px
+    position: absolute
+    top: 0
+    animation: falldown 1.7s infinite
+
+@keyframes falldown
+    0%
+        top: 0
+
+    100%
+        top: 50%
+
+@media (min-width: $x-small)
+    .name
+        font-size: 20px
+
+    .image-con
+        .profile-pic
+            width: 270px
+            height: 270px
+
+    .mailto
+        padding-top: $s
+        padding-bottom: $s
+
+@media (min-width: $tablet)
+
+    .mailto
+        padding: 0px
+
+@media (min-width: $large)
+    .name
+        font-size: $l

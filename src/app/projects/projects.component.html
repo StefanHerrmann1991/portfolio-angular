@@ -1,0 +1,37 @@
+<div class="main" id="portfolio" [ngClass]="{'hide-content': displayService.showH2Only$ | async}">
+    <div class="arrow-container arrow-right">
+      <img data-aos="fade-down-right" class="arrow" src="assets/img/icons/arrowRight.png">
+    </div>
+    <h2 class="portfolio">Portfolio</h2>
+    <div class="work-description">
+      Explore and review my latest development projects.
+    </div>
+    <div class="projects" data-aos="zoom-in-up">
+      <div *ngFor="let project of projects; let i = index">
+        <div [attr.data-aos-delay]="150 * i" [ngClass]="i % 2 === 0 ? 'right' : 'left'" class="project-img">
+          <div class="project-number">0{{i + 1}}/0{{projects.length}}</div>
+          <div class="project-container">
+            <a href="{{project.path}}" target="_blank" class="overlay-container">
+              <img [ngClass]="{'gray': !isHovering[i]}" src="{{ project.img }}" (mouseover)="isHovering[i] = true">
+              <div [ngClass]="{'overlay': isHovering[i]}">
+                <img [ngClass]="{'d-none' :!isHovering[i]}" src="assets/img/icons/circleArrow.png">
+              </div>
+            </a>
+            <div [ngClass]="{'hide': !isHovering[i]}" class="project">
+              <h3>{{ project.name }}</h3>
+              <div class="technologies">{{ project.technologies}}</div>
+              <div class="project-description">{{ project.description }}</div>
+              <div class="link-boxes">
+                <a target="_blank" href="{{ project.github}}">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="arrow-container left-arrow">
+      <img data-aos="fade-down-left" class="arrow" src="assets/img/icons/arrowLeft.png">
+    </div>
+  </div>
+  

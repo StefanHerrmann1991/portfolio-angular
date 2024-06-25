@@ -1,0 +1,74 @@
+<img class="triangle" src="assets/img/icons/triangle.png">
+<h2 class="greeting">Say hi</h2>
+<div class="main" id="contactForm" [ngClass]="{'hide-content': displayService.showH2Only$ | async}">
+    <h3>Want to discuss a new project?</h3>
+    <div class="greeting">Say hello! let's discuss your ideas and make it happen</div>
+    <form (submit)="onSubmit(contactForm)" ngNativeValidate #contactForm="ngForm">
+        <div class="contact">
+            <div class="contact-data">
+                <input required type="name" [(ngModel)]="contactData.name" name="name" placeholder="Your name"
+                    #nameModel="ngModel">
+                <img src="assets/img/icons/valid.png" *ngIf="nameModel.valid && nameModel.touched" class="valid">
+                <img src="assets/img/icons/invalid.png" *ngIf="nameModel.invalid && nameModel.touched" class="invalid">
+            </div>
+            <div class="contact-data">
+                <input required type="email" [(ngModel)]="contactData.email" email="true" name="email"
+                    placeholder="Your email" #emailModel="ngModel">
+                <img src="assets/img/icons/valid.png" *ngIf="emailModel.valid && emailModel.touched" class="valid">
+                <img src="assets/img/icons/invalid.png" *ngIf="emailModel.invalid && emailModel.touched"
+                    class="invalid">
+            </div>
+            <div class="contact-data">
+                <textarea required type="message" [(ngModel)]="contactData.message" name="message"
+                    placeholder="Your message" #messageModel="ngModel">
+                    </textarea>
+                <img src="assets/img/icons/valid.png" *ngIf="messageModel.valid && messageModel.touched" class="valid">
+                <img src="assets/img/icons/invalid.png" *ngIf="messageModel.invalid && messageModel.touched"
+                    class="invalid">
+            </div>
+            <div class="privacy-policy">
+                <div class="hover-div">
+                    <button class="privacy-btn" type="button" (click)="togglePrivacyPolicy()"
+                        [class.checked]="agreePrivacyPolicy" [attr.aria-pressed]="agreePrivacyPolicy" #privacyBtn>
+                        <div class="checkmark" *ngIf="agreePrivacyPolicy">&#x2713;</div>
+                    </button>
+                </div>
+                <div>
+                    <div>I've read the <a routerLink="/legal-notice" routerLinkActive="active">privacy policy</a> and
+                        agree
+                        to the processing of my data as outlined.</div>
+                    <div *ngIf="!agreePrivacyPolicy && privacyPolicyTouched" class="error-message">
+                        You must agree to the privacy policy to proceed.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <div class="desktop"></div>
+            <button class="send-btn" [ngClass]="{'success-btn' : isDelivered}" #sendButton
+                [disabled]="isLoading || isDelivered || !agreePrivacyPolicy" type="submit">
+                <div *ngIf="!isDelivered" [ngClass]="{'hide' : isLoading}">Send Message</div>
+                <div *ngIf="isDelivered" class="email-sent-indicator">
+                    ✓ Email Sent
+                </div>
+            </button>
+            <a href="#pagesHead" class="desktop" (mouseenter)="changeImageSource(true)"
+                (mouseleave)="changeImageSource(false)">
+                <img class="arrow-up" [src]="imageSource">
+            </a>
+        </div>
+    </form>
+</div>
+<div [ngClass]="{'hide' : !isLoading}">
+    <div class="loading-screen">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
