@@ -6,22 +6,35 @@
     <form (submit)="onSubmit(contactForm)" ngNativeValidate #contactForm="ngForm">
         <div class="contact">
             <div class="contact-data">
-                <input required type="name" [(ngModel)]="contactData.name" name="name" placeholder="Your name"
-                    #nameModel="ngModel">
+                <div class="form-container">
+                    <input required type="name" [(ngModel)]="contactData.name" name="name" placeholder="Your name"
+                        #nameModel="ngModel" minlength="4">
+                    <div *ngIf="!nameModel.valid && nameModel.touched" class="error-message">Please enter a valid name.
+                    </div>
+                </div>
                 <img src="assets/img/icons/valid.png" *ngIf="nameModel.valid && nameModel.touched" class="valid">
                 <img src="assets/img/icons/invalid.png" *ngIf="nameModel.invalid && nameModel.touched" class="invalid">
             </div>
             <div class="contact-data">
-                <input required type="email" [(ngModel)]="contactData.email" email="true" name="email"
-                    placeholder="Your email" #emailModel="ngModel">
+                <div class="form-container">
+                    <input required [(ngModel)]="contactData.email" email="true" name="email" placeholder="Your email"
+                        #emailModel="ngModel" type="email">
+                    <div *ngIf="!emailModel.valid && emailModel.touched" class="error-message">Please enter a valid
+                        email address.</div>
+                </div>
                 <img src="assets/img/icons/valid.png" *ngIf="emailModel.valid && emailModel.touched" class="valid">
                 <img src="assets/img/icons/invalid.png" *ngIf="emailModel.invalid && emailModel.touched"
                     class="invalid">
             </div>
             <div class="contact-data">
-                <textarea required type="message" [(ngModel)]="contactData.message" name="message"
-                    placeholder="Your message" #messageModel="ngModel">
+                <div class="form-container">
+                    <textarea required type="message" [(ngModel)]="contactData.message" name="message"
+                        placeholder="Your message" #messageModel="ngModel" minlength="4">
                     </textarea>
+                    <div class="error-message" *ngIf="!messageModel.valid && messageModel.touched">Enter a message
+                        please.
+                    </div>
+                </div>
                 <img src="assets/img/icons/valid.png" *ngIf="messageModel.valid && messageModel.touched" class="valid">
                 <img src="assets/img/icons/invalid.png" *ngIf="messageModel.invalid && messageModel.touched"
                     class="invalid">
@@ -46,7 +59,8 @@
         <div class="btn-container">
             <div class="desktop"></div>
             <button class="send-btn" [ngClass]="{'success-btn' : isDelivered}" #sendButton
-                [disabled]="isLoading || isDelivered || !agreePrivacyPolicy" type="submit">
+                [disabled]="isLoading || isDelivered || !agreePrivacyPolicy || !emailModel.valid || !nameModel.valid || !messageModel.valid"
+                type="submit">
                 <div *ngIf="!isDelivered" [ngClass]="{'hide' : isLoading}">Send Message</div>
                 <div *ngIf="isDelivered" class="email-sent-indicator">
                     ✓ Email Sent

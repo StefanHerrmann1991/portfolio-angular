@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { DisplayService } from '../display.service';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,10 +15,6 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, FormsModule, RouterModule, FooterComponent]
 })
 export class ContactFormComponent implements OnInit, AfterViewInit {
-  name: string = '';
-  email: string = '';
-  message: string = '';
-
   @ViewChild('contactForm') contactForm!: NgForm;
 
   isLoading: boolean = false;
@@ -31,6 +27,11 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
 
   constructor(public displayService: DisplayService) { }
 
+  contactData = {
+    name: "",
+    email: "",
+    message: "",
+  }
 
   mailTest = true;
   http = inject(HttpClient);
@@ -47,25 +48,27 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
   };
 
   onSubmit(ngForm: NgForm) {
-    this.http.post(this.post.endPoint, this.post.body(this.contactData))
-      .subscribe({
-        next: (response: any) => {
-          ngForm.resetForm();
-        },
-        error: (error: any) => {
-          console.error(error);
-        },
-        complete: () => console.info('send post complete'),
-      });
+    this.isLoading = true;
+    if (ngForm.valid && ngForm.submitted) {
+      this.http.post(this.post.endPoint, this.post.body(this.contactData))
+        .subscribe({
+          next: (response: any) => {
+            ngForm.resetForm();
+          },
+          error: (error: any) => {
+            console.error(error);
+          },
+          complete: () => {
+            this.isDelivered = true;
+          },
+        });
+    }
+    this.isLoading = false;
   }
 
 
 
-  contactData = {
-    name: "",
-    email: "",
-    message: "",
-  }
+
 
   ngOnInit(): void {
   }
@@ -88,40 +91,10 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     this.imageSource = hovered ? 'assets/img/icons/arrowWhite2.png' : 'assets/img/icons/arrowWhite.png';
   }
 
-  async sendMail() {
-    this.isLoading = true;
-    this.contactForm.controls['name'].disable();
-    this.contactForm.controls['email'].disable();
-    this.contactForm.controls['message'].disable();
+  public noWhitespaceValidator(control: FormControl) {
+    return (control.value || '').trim().length? null : { 'whitespace': true };       
+}
 
-    let fd = new FormData();
-    fd.append('name', this.name);
-    fd.append('email', this.email);
-    fd.append('message', this.message);
 
-    try {
-      const response = await fetch('https://stefan-herrmann.org/send_mail/sendMail.php', {
-        method: 'POST',
-        body: fd
-      });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
-      this.name = "";
-      this.email = "";
-      this.message = "";
-      this.isDelivered = true;
-    } catch (error) {
-      console.error('Error sending email:', error);
-      // Optionally display an error message to the user
-    } finally {
-      this.isLoading = false;
-      this.contactForm.controls['name'].enable();
-      this.contactForm.controls['email'].enable();
-      this.contactForm.controls['message'].enable();
-      this.contactForm.resetForm();
-    }
-  }
 }
