@@ -8,7 +8,7 @@
             <div class="contact-data">
                 <div class="form-container">
                     <input required type="name" [(ngModel)]="contactData.name" name="name" placeholder="Your name"
-                        #nameModel="ngModel" minlength="4">
+                        #nameModel="ngModel" minlength="4" pattern="^\S.*$">
                     <div *ngIf="!nameModel.valid && nameModel.touched" class="error-message">Please enter a valid name.
                     </div>
                 </div>
@@ -29,7 +29,7 @@
             <div class="contact-data">
                 <div class="form-container">
                     <textarea required type="message" [(ngModel)]="contactData.message" name="message"
-                        placeholder="Your message" #messageModel="ngModel" minlength="4">
+                        placeholder="Your message" #messageModel="ngModel" minlength="4" pattern="^\S.*$">
                     </textarea>
                     <div class="error-message" *ngIf="!messageModel.valid && messageModel.touched">Enter a message
                         please.

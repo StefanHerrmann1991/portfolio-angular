@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { DisplayService } from '../display.service';
-import { FormControl, NgForm, Validators } from '@angular/forms';
+import { FormControl, NgForm, Validators, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 import { HttpClient } from '@angular/common/http';
@@ -90,11 +89,4 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
   changeImageSource(hovered: boolean): void {
     this.imageSource = hovered ? 'assets/img/icons/arrowWhite2.png' : 'assets/img/icons/arrowWhite.png';
   }
-
-  public noWhitespaceValidator(control: FormControl) {
-    return (control.value || '').trim().length? null : { 'whitespace': true };       
-}
-
-
-
 }
