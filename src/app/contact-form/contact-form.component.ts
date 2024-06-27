@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { DisplayService } from '../display.service';
-import { FormControl, NgForm, Validators, FormsModule } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
@@ -23,17 +23,19 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
   privacyPolicyInteracted: boolean = false;
   privacyPolicyTouched: boolean = false;
   imageSource = 'assets/img/icons/arrowWhite.png';
-
-  constructor(public displayService: DisplayService) { }
-
   contactData = {
     name: "",
     email: "",
     message: "",
   }
+  isDisabled = false;
+
+  constructor(public displayService: DisplayService) { }
+
 
   mailTest = true;
   http = inject(HttpClient);
+
 
   post = {
     endPoint: 'https://portfolio.stefan-herrmann.org/sendMail.php',
@@ -46,18 +48,21 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     },
   };
 
+
   onSubmit(ngForm: NgForm) {
     this.isLoading = true;
     if (ngForm.valid && ngForm.submitted) {
       this.http.post(this.post.endPoint, this.post.body(this.contactData))
-        .subscribe({
-          next: (response: any) => {
-            ngForm.resetForm();
-          },
-          error: (error: any) => {
-            console.error(error);
-          },
-          complete: () => {
+      .subscribe({
+        next: (response: any) => {
+          ngForm.resetForm();            
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.isDisabled = false;
+        },
+        complete: () => {
+            this.isDisabled = true;
             this.isDelivered = true;
           },
         });
@@ -66,14 +71,13 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
   }
 
 
-
-
-
   ngOnInit(): void {
   }
 
+
   ngAfterViewInit(): void {
   }
+
 
   togglePrivacyPolicy() {
     if (this.agreePrivacyPolicy) {
