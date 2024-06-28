@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DisplayService } from '../display.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.sass'
 })
@@ -26,7 +27,7 @@ export class FooterComponent implements OnInit {
     'url': 'https://www.linkedin.com/in/stefan-herrmann-a564451b3/'
   },
   {
-    'logo': 'assets/img/icons/email.png',
+    'logo': 'assets/img/icons/xing.png',
     'url': 'https://www.xing.com/profile/Stefan_Herrmann132/cv'
   },]
 
